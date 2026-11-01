@@ -6,6 +6,16 @@
 <title>Chenyu Zhang · Camellia Plant Genetics</title>
 <meta name="description" content="Chenyu Zhang (张晨禹), Lecturer at the College of Forestry, Central South University of Forestry and Technology. Genetics and evolution of traits in Camellia crops: tea, oil-camellia and ornamental camellias.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%23ffcf5a'/><path d='M9 22c0-8 6-13 14-13-1 8-6 13-14 13z' fill='%2314937a'/></svg>">
+<script>
+(function () {
+  var lang = null;
+  try { var q = new URLSearchParams(location.search).get("lang"); if (q === "zh" || q === "en") lang = q; } catch (e) {}
+  if (!lang) { try { lang = localStorage.getItem("site-lang"); } catch (e) {} }
+  if (lang !== "zh" && lang !== "en") lang = /^zh/i.test(navigator.language || "") ? "zh" : "en";
+  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -131,64 +141,81 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
   .lede { font-size: 22px; }
   .timeline li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
+html[data-lang="zh"] .en, html:not([data-lang="zh"]) .zh { display: none !important; }
+.lang-switch { display: inline-flex; align-self: flex-start; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.lang-switch button {
+  font: inherit; font-size: 13.5px; font-weight: 700; color: var(--muted); background: none; border: 0;
+  border-radius: 999px; padding: 4px 14px; cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] { background: var(--accent-soft); color: var(--ink); }
+.lang-switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+html[data-lang="zh"] .name-main { font-size: 34px; }
+.name-sub { font-size: 18px; color: var(--muted); margin-top: 4px; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <aside class="rail">
+    <div class="lang-switch" role="group" aria-label="Language / 语言">
+      <button type="button" id="lang-en" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-zh" data-set-lang="zh" aria-pressed="false">中文</button>
+    </div>
     <img class="portrait" src="assets/photo.jpg" alt="Portrait of Chenyu Zhang" width="156" height="156">
     <div>
-      <h1 class="name">Chenyu Zhang</h1>
-      <div class="name-zh">张晨禹</div>
+      <h1 class="name"><span class="en" lang="en">Chenyu Zhang</span><span class="zh" lang="zh-CN">张晨禹</span></h1>
+      <div class="name-sub"><span class="en" lang="en">张晨禹</span><span class="zh" lang="zh-CN">Chenyu Zhang</span></div>
     </div>
-    <p class="role"><b>Lecturer</b>College of Forestry, Central South University of Forestry and Technology, Changsha, China</p>
+    <p class="role"><b><span class="en" lang="en">Lecturer</span><span class="zh" lang="zh-CN">讲师</span></b><span class="en" lang="en">College of Forestry, Central South University of Forestry and Technology, Changsha, China</span><span class="zh" lang="zh-CN">中南林业科技大学林学院，湖南长沙</span></p>
     <ul class="links">
-      <li><span>Email</span>chenyuzhang@csuft.edu.cn</li>
-      <li><span>Scholar</span><a href="https://scholar.google.com/citations?user=aiG2V5wAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><span><span class="en" lang="en">Email</span><span class="zh" lang="zh-CN">邮箱</span></span>chenyuzhang@csuft.edu.cn</li>
+      <li><span><span class="en" lang="en">Scholar</span><span class="zh" lang="zh-CN">学术</span></span><a href="https://scholar.google.com/citations?user=aiG2V5wAAAAJ&amp;hl=en">Google Scholar</a></li>
       <li><span>GitHub</span><a href="https://github.com/chenyuzhang-genetics">chenyuzhang-genetics</a></li>
     </ul>
     <nav class="nav" aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#education">Education</a>
+      <a href="#about"><span class="en" lang="en">About</span><span class="zh" lang="zh-CN">简介</span></a>
+      <a href="#research"><span class="en" lang="en">Research</span><span class="zh" lang="zh-CN">研究</span></a>
+      <a href="#publications"><span class="en" lang="en">Publications</span><span class="zh" lang="zh-CN">论文</span></a>
+      <a href="#education"><span class="en" lang="en">Education</span><span class="zh" lang="zh-CN">经历</span></a>
     </nav>
   </aside>
 
   <main>
     <section id="about">
-      <h2>About</h2>
-      <p class="lede">I study the genetic mechanisms that shape plant traits, and the <mark>evolutionary principles</mark> behind them.</p>
-      <p>I am a Lecturer at the College of Forestry, Central South University of Forestry and Technology. I received my PhD in 2025, jointly trained by Huazhong Agricultural University and the Tea Research Institute of the Chinese Academy of Agricultural Sciences, with CSC-funded training in the Laboratory of Genetics at Wageningen University. My work combines genomics, quantitative genetics, plant physiology and elemental imaging, and focuses on the economic crops of the genus <i>Camellia</i>.</p>
+      <h2><span class="en" lang="en">About</span><span class="zh" lang="zh-CN">简介</span></h2>
+      <p class="lede en" lang="en">I study the genetic mechanisms that shape plant traits, and the <mark>evolutionary principles</mark> behind them.</p>
+      <p class="lede zh" lang="zh-CN">我学习植物性状形成的遗传机制及其背后的<mark>进化原理</mark>。</p>
+      <p class="en" lang="en">I am a Lecturer at the College of Forestry, Central South University of Forestry and Technology. I received my PhD in 2025, jointly trained by Huazhong Agricultural University and the Tea Research Institute of the Chinese Academy of Agricultural Sciences, with CSC-funded training in the Laboratory of Genetics at Wageningen University. My work combines genomics, quantitative genetics, plant physiology and elemental imaging, and focuses on the economic crops of the genus <i>Camellia</i>.</p>
+      <p class="zh" lang="zh-CN">我现任中南林业科技大学林学院讲师。2025年获博士学位，由华中农业大学与中国农业科学院茶叶研究所联合培养，其间受国家留学基金委资助在荷兰瓦赫宁根大学遗传学实验室联合培养。我的研究结合基因组学、数量遗传学、植物生理学和元素成像技术，聚焦山茶属经济作物。</p>
     </section>
 
     <section id="research">
-      <h2>Research</h2>
+      <h2><span class="en" lang="en">Research</span><span class="zh" lang="zh-CN">研究</span></h2>
       <div class="question">
-        <span class="q-label">The question that drives my work</span>
-        <p class="q-text">How did the economic crops of <i>Camellia</i> — tea, oil-camellia and ornamental camellias — come into being, and what genetic mechanisms underlie their distinctive traits?</p>
+        <span class="q-label"><span class="en" lang="en">The question that drives my work</span><span class="zh" lang="zh-CN">我关注的科学问题</span></span>
+        <p class="q-text en" lang="en">How did the economic crops of <i>Camellia</i> — tea, oil-camellia and ornamental camellias — come into being, and what genetic mechanisms underlie their distinctive traits?</p>
+        <p class="q-text zh" lang="zh-CN">山茶属的经济作物——茶、油茶和山茶——是如何形成的？它们的特色性状背后有着怎样的遗传机理？</p>
       </div>
       <div class="themes">
         <div class="theme">
-          <span class="tag">SNP chips · population genetics</span>
-          <h3>Diversity of tea germplasm</h3>
-          <p>Genotyping natural tea resources from across China to describe their diversity and link candidate genes to traits.</p>
+          <span class="tag"><span class="en" lang="en">SNP chips · population genetics</span><span class="zh" lang="zh-CN">SNP 芯片 · 群体遗传</span></span>
+          <h3><span class="en" lang="en">Diversity of tea germplasm</span><span class="zh" lang="zh-CN">茶树种质资源多样性</span></h3>
+          <p><span class="en" lang="en">Genotyping natural tea resources from across China to describe their diversity and link candidate genes to traits.</span><span class="zh" lang="zh-CN">对全国各地的茶树自然资源进行基因分型，解析其遗传多样性，并将候选基因与性状关联。</span></p>
         </div>
         <div class="theme">
-          <span class="tag">Genomics · flowering</span>
-          <h3>Flowering in oil-camellia</h3>
-          <p>Genome resources, SNP chips and QTL analysis to understand flowering time and inflorescence traits in <i>Camellia</i> oil crops.</p>
+          <span class="tag"><span class="en" lang="en">Genomics · flowering</span><span class="zh" lang="zh-CN">基因组学 · 开花</span></span>
+          <h3><span class="en" lang="en">Flowering in oil-camellia</span><span class="zh" lang="zh-CN">油茶开花</span></h3>
+          <p><span class="en" lang="en">Genome resources, SNP chips and QTL analysis to understand flowering time and inflorescence traits in <i>Camellia</i> oil crops.</span><span class="zh" lang="zh-CN">利用基因组资源、SNP 芯片和 QTL 分析，解析山茶属油料作物的花期与花序性状。</span></p>
         </div>
         <div class="theme">
-          <span class="tag">QTL mapping · F1 population</span>
-          <h3>Genetics of shoot quality traits</h3>
-          <p>Mapping loci that control mineral elements, catechins and alkaloids in young tea shoots.</p>
+          <span class="tag"><span class="en" lang="en">QTL mapping · F1 population</span><span class="zh" lang="zh-CN">QTL 定位 · F1 群体</span></span>
+          <h3><span class="en" lang="en">Genetics of shoot quality traits</span><span class="zh" lang="zh-CN">茶树新梢品质性状遗传</span></h3>
+          <p><span class="en" lang="en">Mapping loci that control mineral elements, catechins and alkaloids in young tea shoots.</span><span class="zh" lang="zh-CN">定位控制茶树新梢矿质元素、儿茶素和生物碱含量的遗传位点。</span></p>
         </div>
         <div class="theme">
-          <span class="tag">Ionomics · root physiology</span>
-          <h3>Fluoride and aluminium in tea roots</h3>
-          <p>How fluoride and aluminium interact in the root cell wall, and how oxalate and its transporters decide where fluoride ends up.</p>
+          <span class="tag"><span class="en" lang="en">Ionomics · root physiology</span><span class="zh" lang="zh-CN">离子组学 · 根系生理</span></span>
+          <h3><span class="en" lang="en">Fluoride and aluminium in tea roots</span><span class="zh" lang="zh-CN">茶树根系中的氟与铝</span></h3>
+          <p><span class="en" lang="en">How fluoride and aluminium interact in the root cell wall, and how oxalate and its transporters decide where fluoride ends up.</span><span class="zh" lang="zh-CN">研究氟与铝在根系细胞壁中的互作，以及草酸及其转运蛋白如何决定氟在植株中的去向。</span></p>
         </div>
       </div>
       <div class="elements" aria-label="Elements studied">
@@ -201,63 +228,83 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
         <div class="el"><b>K</b><small>19</small></div>
         <div class="el"><b>Ca</b><small>20</small></div>
       </div>
-      <p class="el-note">One example of a distinctive trait: tea is a rare crop that accumulates both fluorine and aluminium. These are the elements in my current work.</p>
+      <p class="el-note"><span class="en" lang="en">One example of a distinctive trait: tea is a rare crop that accumulates both fluorine and aluminium. These are the elements in my current work.</span><span class="zh" lang="zh-CN">特色性状的一个例子：茶树是少有的能同时富集氟和铝的作物。以上是我目前研究涉及的元素。</span></p>
     </section>
 
     <section id="publications">
-      <h2>Publications</h2>
-      <p class="note">For a full and current list, see my <a href="https://scholar.google.com/citations?user=aiG2V5wAAAAJ&amp;hl=en">Google Scholar profile</a>.</p>
+      <h2><span class="en" lang="en">Publications</span><span class="zh" lang="zh-CN">论文</span></h2>
+      <p class="note"><span class="en" lang="en">For a full and current list, see my <a href="https://scholar.google.com/citations?user=aiG2V5wAAAAJ&amp;hl=en">Google Scholar profile</a>.</span><span class="zh" lang="zh-CN">完整的最新列表见我的 <a href="https://scholar.google.com/citations?user=aiG2V5wAAAAJ&amp;hl=en">Google Scholar 主页</a>。</span></p>
       <ul class="pubs" id="pub-list">
-        <li class="pub-count">33 journal articles · 14 as first author</li>
-        <li class="pub"><div class="yr">2026</div><div><a class="t" href="https://doi.org/10.1093/plphys/kiag077">Fluoride detoxification in tea plants depends on aluminum and localization in the epidermis</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Pongrac P, Vogel-Mikuš K, Gianoncelli A, Bonanni V, Kavčič M, Šmit Ž, Rupnik Z, Vavpetič P, Aarts MGM, et al. <i>Plant Physiology</i> 200(4): kiag077 · <a class="doi" href="https://doi.org/10.1093/plphys/kiag077">doi:10.1093/plphys/kiag077</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1007/s11104-025-07984-5">Monochromatic X-ray fluorescence spectroscopy for major and trace element analysis in plant science applications</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Charrois L, Jacquet J, Sirguey C, Chen Z, Van Der Ent A. <i>Plant and Soil</i> 518(1): 105–120 · <a class="doi" href="https://doi.org/10.1007/s11104-025-07984-5">doi:10.1007/s11104-025-07984-5</a></div></div></li>
+        <li class="pub-count"><span class="en" lang="en">33 journal articles · 14 as first author</span><span class="zh" lang="zh-CN">共 33 篇期刊论文，其中第一作者 14 篇</span></li>
+        <li class="pub"><div class="yr">2026</div><div><a class="t" href="https://doi.org/10.1093/plphys/kiag077">Fluoride detoxification in tea plants depends on aluminum and localization in the epidermis</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Pongrac P, Vogel-Mikuš K, Gianoncelli A, Bonanni V, Kavčič M, Šmit Ž, Rupnik Z, Vavpetič P, Aarts MGM, et al. <i>Plant Physiology</i> 200(4): kiag077 · <a class="doi" href="https://doi.org/10.1093/plphys/kiag077">doi:10.1093/plphys/kiag077</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1007/s11104-025-07984-5">Monochromatic X-ray fluorescence spectroscopy for major and trace element analysis in plant science applications</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Charrois L, Jacquet J, Sirguey C, Chen Z, Van Der Ent A. <i>Plant and Soil</i> 518(1): 105–120 · <a class="doi" href="https://doi.org/10.1007/s11104-025-07984-5">doi:10.1007/s11104-025-07984-5</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1093/hr/uhag031">An endangered wild tea plant resource with unique alkaloid and catechin profiles and potential high-quality tea</a><div class="meta">Liu D, Chen Y, Chen J, <b>Zhang C</b>, Ye Y, Mei P, Wang P, Ding S, Gong Y, Wang J, et al. <i>Horticulture Research</i> 13(5): uhag031 · <a class="doi" href="https://doi.org/10.1093/hr/uhag031">doi:10.1093/hr/uhag031</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.3389/fnut.2026.1951952">Metabolic Characteristics and Chemical Basis of Matcha from Cultivars with Different Leaf Colors</a><div class="meta">Ding S, Liu D, Liu H, Gong Y, Mei P, Ye Y, Wang P, <b>Zhang C</b>, Chen J, Ma CL, et al. <i>Frontiers in Nutrition</i> 13: 1951952 · <a class="doi" href="https://doi.org/10.3389/fnut.2026.1951952">doi:10.3389/fnut.2026.1951952</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1093/jxb/erag291">Quantitative light element profiling in plant tissues with monochromatic X-ray fluorescence analysis: a new frontier for abiotic stress studies</a><div class="meta">Kahlon PS, Kokkinopoulou P, Bugallo Alfageme S, Leong CK, <b>Zhang C</b>, Chen Z, Testerink C, van der Ent A. <i>Journal of Experimental Botany</i> : erag291 · <a class="doi" href="https://doi.org/10.1093/jxb/erag291">doi:10.1093/jxb/erag291</a></div></div></li>
-        <li class="pub"><div class="yr">2025</div><div><a class="t" href="https://doi.org/10.1186/s13007-025-01412-6">A simple and low-cost method for fluoride analysis of plant materials using alkali extraction and ion-selective electrode</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Aarts MGM, van Der Ent A. <i>Plant Methods</i> 21(1): 98 · <a class="doi" href="https://doi.org/10.1186/s13007-025-01412-6">doi:10.1186/s13007-025-01412-6</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.jia.2025.02.015">QTL detection and candidate gene analysis of the anthracnose resistance locus in tea plant (<i>Camellia sinensis</i>)</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Li H, Mei P, Ye Y, Liu D, Gong Y, Liu H, Yao M, Ma C. <i>Journal of Integrative Agriculture</i> 24(6): 2240–2250 · <a class="doi" href="https://doi.org/10.1016/j.jia.2025.02.015">doi:10.1016/j.jia.2025.02.015</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1093/jxb/erag291">Quantitative light element profiling in plant tissues with monochromatic X-ray fluorescence analysis: a new frontier for abiotic stress studies</a><div class="meta">Kahlon PS, Kokkinopoulou P, Bugallo Alfageme S, Leong CK, <b>Zhang C</b>, Chen Z, Testerink C, van der Ent A. <i>Journal of Experimental Botany</i> erag291 · <a class="doi" href="https://doi.org/10.1093/jxb/erag291">doi:10.1093/jxb/erag291</a></div></div></li>
+        <li class="pub"><div class="yr">2025</div><div><a class="t" href="https://doi.org/10.1186/s13007-025-01412-6">A simple and low-cost method for fluoride analysis of plant materials using alkali extraction and ion-selective electrode</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Aarts MGM, van Der Ent A. <i>Plant Methods</i> 21(1): 98 · <a class="doi" href="https://doi.org/10.1186/s13007-025-01412-6">doi:10.1186/s13007-025-01412-6</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.jia.2025.02.015">QTL detection and candidate gene analysis of the anthracnose resistance locus in tea plant (<i>Camellia sinensis</i>)</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Li H, Mei P, Ye Y, Liu D, Gong Y, Liu H, Yao M, Ma C. <i>Journal of Integrative Agriculture</i> 24(6): 2240–2250 · <a class="doi" href="https://doi.org/10.1016/j.jia.2025.02.015">doi:10.1016/j.jia.2025.02.015</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1186/s12951-025-03533-5">TEA5K: A high-resolution and liquid-phase multiple-SNP array for molecular breeding in tea plant</a><div class="meta">Liu D, <b>Zhang C</b>, Ye Y, Mei P, Gong Y, Liu Z, Sun C, Zhao X, Ding S, Chen J, et al. <i>Journal of Nanobiotechnology</i> 23(1): 481 · <a class="doi" href="https://doi.org/10.1186/s12951-025-03533-5">doi:10.1186/s12951-025-03533-5</a></div></div></li>
-        <li class="pub"><div class="yr">2024</div><div><a class="t" href="https://doi.org/10.1093/jxb/erad430">A key mutation in magnesium chelatase I subunit leads to a chlorophyll-deficient mutant of tea (<i>Camellia sinensis</i>)</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Liu H, Wang J, Li Y, Liu D, Ye Y, Huang R, Li S, Chen L, Chen J, et al. <i>Journal of Experimental Botany</i> 75(3): 935–946 · <a class="doi" href="https://doi.org/10.1093/jxb/erad430">doi:10.1093/jxb/erad430</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.jplph.2024.154371">Developmental-specific regulation promotes the free amino acids accumulation in chlorotic tea plants (<i>Camellia sinensis</i>)</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Li Y, Mei P, Gong Y, Liu D, Ye Y, Wen W, Yao M, Ma C. <i>Journal of Plant Physiology</i> 303: 154371 · <a class="doi" href="https://doi.org/10.1016/j.jplph.2024.154371">doi:10.1016/j.jplph.2024.154371</a></div></div></li>
+        <li class="pub"><div class="yr">2024</div><div><a class="t" href="https://doi.org/10.1093/jxb/erad430">A key mutation in magnesium chelatase I subunit leads to a chlorophyll-deficient mutant of tea (<i>Camellia sinensis</i>)</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Liu H, Wang J, Li Y, Liu D, Ye Y, Huang R, Li S, Chen L, Chen J, et al. <i>Journal of Experimental Botany</i> 75(3): 935–946 · <a class="doi" href="https://doi.org/10.1093/jxb/erad430">doi:10.1093/jxb/erad430</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.jplph.2024.154371">Developmental-specific regulation promotes the free amino acids accumulation in chlorotic tea plants (<i>Camellia sinensis</i>)</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Li Y, Mei P, Gong Y, Liu D, Ye Y, Wen W, Yao M, Ma C. <i>Journal of Plant Physiology</i> 303: 154371 · <a class="doi" href="https://doi.org/10.1016/j.jplph.2024.154371">doi:10.1016/j.jplph.2024.154371</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.3390/ijms25084549">Bulked Segregant RNA-Seq Reveals Different Gene Expression Patterns and Mutant Genes Associated with the Zigzag Pattern of Tea Plants (<i>Camellia sinensis</i>)</a><div class="meta">Ye YY, Liu DD, Tang RJ, Gong Y, <b>Zhang CY</b>, Mei P, Ma CL, Chen JD. <i>International Journal of Molecular Sciences</i> 25(8): 4549 · <a class="doi" href="https://doi.org/10.3390/ijms25084549">doi:10.3390/ijms25084549</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1186/s12870-024-05082-9">High-density genetic map construction and QTL mapping of a zigzag-shaped stem trait in tea plant (<i>Camellia sinensis</i>)</a><div class="meta">Liu D, Ye Y, Tang R, Gong Y, Chen S, <b>Zhang C</b>, Mei P, Chen J, Chen L, Ma C. <i>BMC Plant Biology</i> 24(1): 382 · <a class="doi" href="https://doi.org/10.1186/s12870-024-05082-9">doi:10.1186/s12870-024-05082-9</a></div></div></li>
-        <li class="pub"><div class="yr">2023</div><div><a class="t" href="https://doi.org/10.1186/s13007-023-01008-y">Simultaneous determination of protoporphyrin IX and magnesium protoporphyrin IX in Arabidopsis thaliana and <i>Camellia sinensis</i> using UPLC-MS/MS</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Ma C, Zhu L, Yao M. <i>Plant Methods</i> 19(1): 34 · <a class="doi" href="https://doi.org/10.1186/s13007-023-01008-y">doi:10.1186/s13007-023-01008-y</a></div></div></li>
+        <li class="pub"><div class="yr">2023</div><div><a class="t" href="https://doi.org/10.1186/s13007-023-01008-y">Simultaneous determination of protoporphyrin IX and magnesium protoporphyrin IX in Arabidopsis thaliana and <i>Camellia sinensis</i> using UPLC-MS/MS</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Ma C, Zhu L, Yao M. <i>Plant Methods</i> 19(1): 34 · <a class="doi" href="https://doi.org/10.1186/s13007-023-01008-y">doi:10.1186/s13007-023-01008-y</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1093/hr/uhac279">Deeply functional identification of TCS1 alleles provides efficient technical paths for low-caffeine breeding of tea plants</a><div class="meta">Wang Y, Liu YF, Wei MY, <b>Zhang CY</b>, Chen JD, Yao MZ, Chen L, Jin JQ. <i>Horticulture Research</i> 10(2): uhac279 · <a class="doi" href="https://doi.org/10.1093/hr/uhac279">doi:10.1093/hr/uhac279</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://scholar.google.com/scholar?q=Development+and+application+of+albino+tea+plant+mSNP+molecular+markers+based+on+genome-wide+resequencing.">Development and application of albino tea plant mSNP molecular markers based on genome-wide resequencing</a><div class="meta">Liu HR, <b>Zhang CY</b>, Gong Y, Ye YY, Chen JD, Chen L, Liu DD, Ma CL. </div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.indcrop.2023.116843">Staged and repeated drought-induced regulation of phenylpropanoid synthesis confers tolerance to a water deficit environment in <i>Camellia sinensis</i></a><div class="meta">Shao C, Chen J, Lv Z, Gao X, Guo S, Xu R, Deng Z, Yao S, Chen Z, Kang Y, et al. <i>Industrial Crops and Products</i> 201: 116843 · <a class="doi" href="https://doi.org/10.1016/j.indcrop.2023.116843">doi:10.1016/j.indcrop.2023.116843</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.foodchem.2023.135527">The potential effects of chlorophyll-deficient mutation and tree age on the accumulation of amino acid components in tea plants</a><div class="meta">Liu D, Wei K, <b>Zhang C</b>, Liu H, Gong Y, Ye Y, Chen J, Yao M, Chen L, Ma C. <i>Food Chemistry</i> 411: 135527 · <a class="doi" href="https://doi.org/10.1016/j.foodchem.2023.135527">doi:10.1016/j.foodchem.2023.135527</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.3390/ijms242015070">Transcriptome and biochemical analyses of a chlorophyll-deficient bud mutant of tea plant (<i>Camellia sinensis</i>)</a><div class="meta">Li Y, <b>Zhang C</b>, Ma C, Chen L, Yao M. <i>International Journal of Molecular Sciences</i> 24(20): 15070 · <a class="doi" href="https://doi.org/10.3390/ijms242015070">doi:10.3390/ijms242015070</a></div></div></li>
-        <li class="pub"><div class="yr">2022</div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2022.111193">Translational landscape and metabolic characteristics of the etiolated tea plant (<i>Camellia sinensis</i>)</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Liu G, Chen J, Xie N, Huang J, Shen C. <i>Scientia Horticulturae</i> 303: 111193 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2022.111193">doi:10.1016/j.scienta.2022.111193</a></div></div></li>
+        <li class="pub"><div class="yr">2022</div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2022.111193">Translational landscape and metabolic characteristics of the etiolated tea plant (<i>Camellia sinensis</i>)</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Liu G, Chen J, Xie N, Huang J, Shen C. <i>Scientia Horticulturae</i> 303: 111193 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2022.111193">doi:10.1016/j.scienta.2022.111193</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1093/hr/uhac191">A novel TcS allele conferring the high-theacrine and low-caffeine traits and having potential use in tea plant breeding</a><div class="meta">Zhong H, Wang Y, Qu FR, Wei MY, <b>Zhang CY</b>, Liu HR, Chen L, Yao MZ, Jin JQ. <i>Horticulture Research</i> 9: uhac191 · <a class="doi" href="https://doi.org/10.1093/hr/uhac191">doi:10.1093/hr/uhac191</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.3389/fpls.2022.894840">Carbon and nitrogen metabolism are jointly regulated during shading in roots and leaves of <i>Camellia Sinensis</i></a><div class="meta">Shao C, Jiao H, Chen J, <b>Zhang C</b>, Liu J, Chen J, Li Y, Huang J, Yang B, Liu Z, et al. <i>Frontiers in Plant Science</i> 13: 894840 · <a class="doi" href="https://doi.org/10.3389/fpls.2022.894840">doi:10.3389/fpls.2022.894840</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1021/acs.jafc.2c05456">Effects of preharvest shading on dynamic changes in metabolites, gene expression, and enzyme activity of three tea types during processing</a><div class="meta">Shao C, Deng Z, Liu J, Li Y, <b>Zhang C</b>, Yao S, Zuo H, Shi Y, Yuan S, Qin L, et al. <i>Journal of Agricultural and Food Chemistry</i> 70(45): 14544–14558 · <a class="doi" href="https://doi.org/10.1021/acs.jafc.2c05456">doi:10.1021/acs.jafc.2c05456</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.jfca.2022.104417">Genetic, morphological, and chemical discrepancies between <i>Camellia sinensis</i> (L.) O. Kuntze and its close relatives</a><div class="meta">Jin JQ, Dai WD, <b>Zhang CY</b>, Lin Z, Chen L. <i>Journal of Food Composition and Analysis</i> 108: 104417 · <a class="doi" href="https://doi.org/10.1016/j.jfca.2022.104417">doi:10.1016/j.jfca.2022.104417</a></div></div></li>
-        <li class="pub"><div class="yr">2021</div><div><a class="t" href="https://doi.org/10.1016/j.lwt.2020.110822">Biochemical components and fungal community dynamics during the flowering process of Moringa-Fu brick tea, a novel microbially fermented blended tea</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Guo J, Zhang Z, Tian S, Liu Z, Shen C. <i>LWT</i> 140: 110822 · <a class="doi" href="https://doi.org/10.1016/j.lwt.2020.110822">doi:10.1016/j.lwt.2020.110822</a></div></div></li>
+        <li class="pub"><div class="yr">2021</div><div><a class="t" href="https://doi.org/10.1016/j.lwt.2020.110822">Biochemical components and fungal community dynamics during the flowering process of Moringa-Fu brick tea, a novel microbially fermented blended tea</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Guo J, Zhang Z, Tian S, Liu Z, Shen C. <i>LWT</i> 140: 110822 · <a class="doi" href="https://doi.org/10.1016/j.lwt.2020.110822">doi:10.1016/j.lwt.2020.110822</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.3389/fpls.2021.720800">Disruption of photomorphogenesis leads to abnormal chloroplast development and leaf variegation in <i>Camellia sinensis</i></a><div class="meta">Gao X, <b>Zhang C</b>, Lu C, Wang M, Xie N, Chen J, Li Y, Chen J, Shen C. <i>Frontiers in Plant Science</i> 12: 720800 · <a class="doi" href="https://doi.org/10.3389/fpls.2021.720800">doi:10.3389/fpls.2021.720800</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2021.109984">Pre-and post-harvest exposure to stress influence quality-related metabolites in fresh tea leaves (<i>Camellia sinensis</i>)</a><div class="meta">Shao C, <b>Zhang C</b>, Lv Z, Shen C. <i>Scientia Horticulturae</i> 281: 109984 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2021.109984">doi:10.1016/j.scienta.2021.109984</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1002/jsfa.11330">Research progress on the response of tea catechins to drought stress</a><div class="meta">Lv Z, <b>Zhang C</b>, Shao C, Liu B, Liu E, Yuan D, Zhou Y, Shen C. <i>Journal of the Science of Food and Agriculture</i> 101(13): 5305–5313 · <a class="doi" href="https://doi.org/10.1002/jsfa.11330">doi:10.1002/jsfa.11330</a></div></div></li>
         <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.plaphy.2021.10.032">Transcriptomic analyses reveal variegation-induced metabolic changes leading to high L-theanine levels in albino sectors of variegated tea (<i>Camellia sinensis</i>)</a><div class="meta">Xie N, <b>Zhang C</b>, Zhou P, Gao X, Wang M, Tian S, Lu C, Wang K, Shen C. <i>Plant Physiology and Biochemistry</i> 169: 29–39 · <a class="doi" href="https://doi.org/10.1016/j.plaphy.2021.10.032">doi:10.1016/j.plaphy.2021.10.032</a></div></div></li>
-        <li class="pub"><div class="yr">2020</div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2020.109491">Comprehensive transcriptome profiling of tea leaves (<i>Camellia sinensis</i>) in response to simulated acid rain</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Yi X, Zhou F, Gao X, Wang M, Chen J, Huang J, Shen C. <i>Scientia Horticulturae</i> 272: 109491 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2020.109491">doi:10.1016/j.scienta.2020.109491</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.ecoenv.2019.110090">Exogenous indole acetic acid alleviates Cd toxicity in tea (<i>Camellia sinensis</i>)</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, He Q, Wang M, Gao X, Chen J, Shen C. <i>Ecotoxicology and Environmental Safety</i> 190: 110090 · <a class="doi" href="https://doi.org/10.1016/j.ecoenv.2019.110090">doi:10.1016/j.ecoenv.2019.110090</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2019.108943">Multi-omics research in albino tea plants: Past, present, and future</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Wang M, Gao X, Zhou F, Shen C, Liu Z. <i>Scientia Horticulturae</i> 261: 108943 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2019.108943">doi:10.1016/j.scienta.2019.108943</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.ecoenv.2020.110315">Physiological and biochemical responses of tea seedlings (<i>Camellia sinensis</i>) to simulated acid rain conditions</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Yi X, Gao X, Wang M, Shao C, Lv Z, Chen J, Liu Z, Shen C. <i>Ecotoxicology and Environmental Safety</i> 192: 110315 · <a class="doi" href="https://doi.org/10.1016/j.ecoenv.2020.110315">doi:10.1016/j.ecoenv.2020.110315</a></div></div></li>
-        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.plaphy.2020.09.034">Survival strategies based on the hydraulic vulnerability segmentation hypothesis, for the tea plant [<i>Camellia sinensis</i> (L.) O. Kuntze] in long-term drought stress condition</a><span class="chip">First author</span><div class="meta"><b>Zhang C</b>, Wang M, Chen J, Gao X, Shao C, Lv Z, Jiao H, Xu H, Shen C. <i>Plant Physiology and Biochemistry</i> 156: 484–493 · <a class="doi" href="https://doi.org/10.1016/j.plaphy.2020.09.034">doi:10.1016/j.plaphy.2020.09.034</a></div></div></li>
+        <li class="pub"><div class="yr">2020</div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2020.109491">Comprehensive transcriptome profiling of tea leaves (<i>Camellia sinensis</i>) in response to simulated acid rain</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Yi X, Zhou F, Gao X, Wang M, Chen J, Huang J, Shen C. <i>Scientia Horticulturae</i> 272: 109491 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2020.109491">doi:10.1016/j.scienta.2020.109491</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.ecoenv.2019.110090">Exogenous indole acetic acid alleviates Cd toxicity in tea (<i>Camellia sinensis</i>)</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, He Q, Wang M, Gao X, Chen J, Shen C. <i>Ecotoxicology and Environmental Safety</i> 190: 110090 · <a class="doi" href="https://doi.org/10.1016/j.ecoenv.2019.110090">doi:10.1016/j.ecoenv.2019.110090</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.scienta.2019.108943">Multi-omics research in albino tea plants: Past, present, and future</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Wang M, Gao X, Zhou F, Shen C, Liu Z. <i>Scientia Horticulturae</i> 261: 108943 · <a class="doi" href="https://doi.org/10.1016/j.scienta.2019.108943">doi:10.1016/j.scienta.2019.108943</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.ecoenv.2020.110315">Physiological and biochemical responses of tea seedlings (<i>Camellia sinensis</i>) to simulated acid rain conditions</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Yi X, Gao X, Wang M, Shao C, Lv Z, Chen J, Liu Z, Shen C. <i>Ecotoxicology and Environmental Safety</i> 192: 110315 · <a class="doi" href="https://doi.org/10.1016/j.ecoenv.2020.110315">doi:10.1016/j.ecoenv.2020.110315</a></div></div></li>
+        <li class="pub"><div class="yr"></div><div><a class="t" href="https://doi.org/10.1016/j.plaphy.2020.09.034">Survival strategies based on the hydraulic vulnerability segmentation hypothesis, for the tea plant [<i>Camellia sinensis</i> (L.) O. Kuntze] in long-term drought stress condition</a><span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span><div class="meta"><b>Zhang C</b>, Wang M, Chen J, Gao X, Shao C, Lv Z, Jiao H, Xu H, Shen C. <i>Plant Physiology and Biochemistry</i> 156: 484–493 · <a class="doi" href="https://doi.org/10.1016/j.plaphy.2020.09.034">doi:10.1016/j.plaphy.2020.09.034</a></div></div></li>
       </ul>
     </section>
 
     <section id="education">
-      <h2>Education &amp; training</h2>
+      <h2><span class="en" lang="en">Education &amp; training</span><span class="zh" lang="zh-CN">教育与工作经历</span></h2>
       <ol class="timeline">
-        <li><div class="when">Current</div><div><div class="what">Lecturer</div><div class="where">College of Forestry, Central South University of Forestry and Technology</div></div></li>
-        <li><div class="when">2023 – 2025</div><div><div class="what">Joint PhD training</div><div class="where">Laboratory of Genetics, Wageningen University, the Netherlands</div></div></li>
-        <li><div class="when">– 2025</div><div><div class="what">PhD, Tea Science</div><div class="where">Huazhong Agricultural University &amp; Tea Research Institute, Chinese Academy of Agricultural Sciences</div></div></li>
-        <li><div class="when">– 2021</div><div><div class="what">MSc, Tea Science</div><div class="where">Hunan Agricultural University</div></div></li>
-        <li><div class="when">– 2018</div><div><div class="what">BSc, Tea Science</div><div class="where">Hunan Agricultural University</div></div></li>
+        <li><div class="when"><span class="en" lang="en">Current</span><span class="zh" lang="zh-CN">现任</span></div><div><div class="what"><span class="en" lang="en">Lecturer</span><span class="zh" lang="zh-CN">讲师</span></div><div class="where"><span class="en" lang="en">College of Forestry, Central South University of Forestry and Technology</span><span class="zh" lang="zh-CN">中南林业科技大学林学院</span></div></div></li>
+        <li><div class="when">2023 – 2025</div><div><div class="what"><span class="en" lang="en">Joint PhD training</span><span class="zh" lang="zh-CN">联合培养博士</span></div><div class="where"><span class="en" lang="en">Laboratory of Genetics, Wageningen University, the Netherlands</span><span class="zh" lang="zh-CN">荷兰瓦赫宁根大学遗传学实验室</span></div></div></li>
+        <li><div class="when">– 2025</div><div><div class="what"><span class="en" lang="en">PhD, Tea Science</span><span class="zh" lang="zh-CN">博士，茶学</span></div><div class="where"><span class="en" lang="en">Huazhong Agricultural University &amp; Tea Research Institute, Chinese Academy of Agricultural Sciences</span><span class="zh" lang="zh-CN">华中农业大学 &amp; 中国农业科学院茶叶研究所</span></div></div></li>
+        <li><div class="when">– 2021</div><div><div class="what"><span class="en" lang="en">MSc, Tea Science</span><span class="zh" lang="zh-CN">硕士，茶学</span></div><div class="where"><span class="en" lang="en">Hunan Agricultural University</span><span class="zh" lang="zh-CN">湖南农业大学</span></div></div></li>
+        <li><div class="when">– 2018</div><div><div class="what"><span class="en" lang="en">BSc, Tea Science</span><span class="zh" lang="zh-CN">学士，茶学</span></div><div class="where"><span class="en" lang="en">Hunan Agricultural University</span><span class="zh" lang="zh-CN">湖南农业大学</span></div></div></li>
       </ol>
     </section>
 
-    <footer>Last updated November 2026</footer>
+    <footer><span class="en" lang="en">Last updated November 2026</span><span class="zh" lang="zh-CN">最后更新：2026 年 11 月</span></footer>
   </main>
 </div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-set-lang]");
+  function sync() {
+    var cur = root.getAttribute("data-lang") === "zh" ? "zh" : "en";
+    buttons.forEach(function (btn) { btn.setAttribute("aria-pressed", btn.getAttribute("data-set-lang") === cur ? "true" : "false"); });
+  }
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var lang = btn.getAttribute("data-set-lang");
+      root.setAttribute("data-lang", lang);
+      root.lang = lang === "zh" ? "zh-CN" : "en";
+      try { localStorage.setItem("site-lang", lang); } catch (e) {}
+      sync();
+    });
+  });
+  sync();
+})();
+</script>
 </body>
 </html>

@@ -59,7 +59,7 @@ for entry in re.split(r"\n(?=@)", bib.strip()):
     j = JOURNAL_FIX.get(j.lower(), j)
     loc = f.get("volume", "")
     if f.get("number"): loc += f"({f['number']})"
-    if f.get("pages"): loc += f": {f['pages'].replace('--', '–')}"
+    if f.get("pages"): loc += (": " if loc else "") + f["pages"].replace("--", "–")
     pubs.append(dict(year=int(f["year"]), title=f["title"], first=first,
                      html_title=title_html(f["title"]), authors=", ".join(authors),
                      journal=html.escape(j), loc=html.escape(loc), doi=f.get("doi", "")))
@@ -73,11 +73,12 @@ for p in pubs:
     q = urllib.parse.quote_plus(p["title"])
     href = f"https://doi.org/{p['doi']}" if p["doi"] else f"https://scholar.google.com/scholar?q={q}"
     doi_txt = f' · <a class="doi" href="https://doi.org/{p["doi"]}">doi:{html.escape(p["doi"])}</a>' if p["doi"] else ""
-    chip = '<span class="chip">First author</span>' if p["first"] else ""
+    chip = '<span class="chip"><span class="en" lang="en">First author</span><span class="zh" lang="zh-CN">第一作者</span></span>' if p["first"] else ""
     out.append(f'        <li class="pub"><div class="yr">{yr}</div><div>'
                f'<a class="t" href="{href}">{p["html_title"]}</a>{chip}'
                f'<div class="meta">{p["authors"]}{"" if p["authors"].endswith(".") else "."} {f"<i>{p['journal']}</i> " if p["journal"] else ""}{p["loc"]}{doi_txt}</div></div></li>')
-summary = f'        <li class="pub-count">{len(pubs)} journal articles · {n_first} as first author</li>'
+summary = (f'        <li class="pub-count"><span class="en" lang="en">{len(pubs)} journal articles · {n_first} as first author</span>'
+           f'<span class="zh" lang="zh-CN">共 {len(pubs)} 篇期刊论文，其中第一作者 {n_first} 篇</span></li>')
 block = "\n".join([summary] + out)
 
 idx = ROOT / "index.html"
