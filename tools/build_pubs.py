@@ -4,24 +4,40 @@ import re, html, urllib.parse, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 bib = (ROOT / "publications.bib").read_text(encoding="utf-8")
-JOURNAL_FIX = {"plant physiology and biochemistry": "Plant Physiology and Biochemistry",
+JOURNAL_FIX = {"plant physiology": "Plant Physiology",
+               "international journal of molecular sciences": "International Journal of Molecular Sciences",
+               "plant physiology and biochemistry": "Plant Physiology and Biochemistry",
                "horticulture research": "Horticulture Research",
                "journal of experimental botany": "Journal of Experimental Botany"}
 ME = {"zhang, chenyu", "zhang, chen-yu"}
 
+ACCENTS = {"v": {"s": "š", "c": "č", "z": "ž", "S": "Š", "C": "Č", "Z": "Ž"},
+           "'": {"e": "é", "a": "á", "o": "ó"}, '"': {"o": "ö", "u": "ü", "a": "ä"}}
+
+def delatex(s):
+    s = re.sub(r"\\([v'\"])\{?(\w)\}?", lambda m: ACCENTS.get(m.group(1), {}).get(m.group(2), m.group(2)), s)
+    return s.replace("\\_", " ").replace("{", "").replace("}", "")
+
 def fields(entry):
-    return {k.lower(): v.strip() for k, v in re.findall(r"(\w+)\s*=\s*\{((?:[^{}]|\{[^{}]*\})*)\}", entry)}
+    out, i = {}, 0
+    for m in re.finditer(r"(\w+)\s*=\s*\{", entry):
+        if m.start() < i:
+            continue
+        depth, j = 1, m.end()
+        while depth and j < len(entry):
+            depth += {"{": 1, "}": -1}.get(entry[j], 0); j += 1
+        out[m.group(1).lower()] = delatex(entry[m.end():j - 1].strip()); i = j
+    return out
 
 def short(name):
     if name.strip().lower() == "others":
         return None
     last, _, given = name.partition(",")
-    inits = "".join(p[0].upper() for p in re.split(r"[\s\-]+", given.strip()) if p)
+    inits = "".join(p if p.isupper() and len(p) > 1 else p[0].upper() for p in re.split(r"[\s\-]+", given.strip()) if p)
     return f"{last.strip()} {inits}".strip()
 
 def title_html(t):
-    t = t.replace("\\_", " ").replace("{", "").replace("}", "")
-    t = html.escape(t)
+    t = html.escape(t.rstrip("."))
     return re.sub(r"(Camellia sinensis)", r"<i>\1</i>", t, flags=re.I)
 
 pubs = []
@@ -54,13 +70,13 @@ out, last_year = [], None
 for p in pubs:
     yr = str(p["year"]) if p["year"] != last_year else ""
     last_year = p["year"]
-    q = urllib.parse.quote_plus(p["title"].replace("\\_", " "))
+    q = urllib.parse.quote_plus(p["title"])
     href = f"https://doi.org/{p['doi']}" if p["doi"] else f"https://scholar.google.com/scholar?q={q}"
     doi_txt = f' · <a class="doi" href="https://doi.org/{p["doi"]}">doi:{html.escape(p["doi"])}</a>' if p["doi"] else ""
     chip = '<span class="chip">First author</span>' if p["first"] else ""
     out.append(f'        <li class="pub"><div class="yr">{yr}</div><div>'
                f'<a class="t" href="{href}">{p["html_title"]}</a>{chip}'
-               f'<div class="meta">{p["authors"]}{"" if p["authors"].endswith(".") else "."} <i>{p["journal"]}</i> {p["loc"]}{doi_txt}</div></div></li>')
+               f'<div class="meta">{p["authors"]}{"" if p["authors"].endswith(".") else "."} {f"<i>{p['journal']}</i> " if p["journal"] else ""}{p["loc"]}{doi_txt}</div></div></li>')
 summary = f'        <li class="pub-count">{len(pubs)} journal articles · {n_first} as first author</li>'
 block = "\n".join([summary] + out)
 
