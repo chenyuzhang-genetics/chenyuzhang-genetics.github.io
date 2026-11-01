@@ -46,7 +46,7 @@ for entry in re.split(r"\n(?=@)", bib.strip()):
     if f.get("pages"): loc += f": {f['pages'].replace('--', '–')}"
     pubs.append(dict(year=int(f["year"]), title=f["title"], first=first,
                      html_title=title_html(f["title"]), authors=", ".join(authors),
-                     journal=html.escape(j), loc=html.escape(loc)))
+                     journal=html.escape(j), loc=html.escape(loc), doi=f.get("doi", "")))
 
 pubs.sort(key=lambda p: (-p["year"], not p["first"], p["title"]))
 n_first = sum(p["first"] for p in pubs)
@@ -55,10 +55,12 @@ for p in pubs:
     yr = str(p["year"]) if p["year"] != last_year else ""
     last_year = p["year"]
     q = urllib.parse.quote_plus(p["title"].replace("\\_", " "))
+    href = f"https://doi.org/{p['doi']}" if p["doi"] else f"https://scholar.google.com/scholar?q={q}"
+    doi_txt = f' · <a class="doi" href="https://doi.org/{p["doi"]}">doi:{html.escape(p["doi"])}</a>' if p["doi"] else ""
     chip = '<span class="chip">First author</span>' if p["first"] else ""
     out.append(f'        <li class="pub"><div class="yr">{yr}</div><div>'
-               f'<a class="t" href="https://scholar.google.com/scholar?q={q}">{p["html_title"]}</a>{chip}'
-               f'<div class="meta">{p["authors"]}{"" if p["authors"].endswith(".") else "."} <i>{p["journal"]}</i> {p["loc"]}</div></div></li>')
+               f'<a class="t" href="{href}">{p["html_title"]}</a>{chip}'
+               f'<div class="meta">{p["authors"]}{"" if p["authors"].endswith(".") else "."} <i>{p["journal"]}</i> {p["loc"]}{doi_txt}</div></div></li>')
 summary = f'        <li class="pub-count">{len(pubs)} journal articles · {n_first} as first author</li>'
 block = "\n".join([summary] + out)
 
