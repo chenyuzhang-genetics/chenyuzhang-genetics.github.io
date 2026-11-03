@@ -81,16 +81,6 @@ h2::before { content: ""; width: 9px; height: 9px; border-radius: 50%; backgroun
 .lede mark { background: linear-gradient(transparent 62%, var(--glow) 62%); color: inherit; padding: 0 2px; }
 p { margin: 0; max-width: 40em; }
 
-.elements { display: flex; flex-wrap: wrap; gap: 8px; }
-.el {
-  width: 54px; height: 58px; border: 1px solid var(--line); background: var(--surface); border-radius: 8px;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  font-family: var(--mono); line-height: 1.1;
-}
-.el b { font-size: 20px; font-weight: 500; }
-.el small { font-size: 10px; color: var(--muted); }
-.el.focus { border-color: var(--accent); background: var(--accent-soft); }
-.el-note { font-size: 14px; color: var(--muted); }
 
 .question {
   background: var(--surface); border: 1px solid var(--sun); border-radius: var(--radius);
@@ -183,7 +173,7 @@ html[data-lang="zh"] .name-main { font-size: 34px; }
   <main>
     <section id="about">
       <h2><span class="en" lang="en">About</span><span class="zh" lang="zh-CN">简介</span></h2>
-      <p class="lede en" lang="en">Chenyu studies the genetic mechanisms that shape plant traits, and the <mark>evolutionary principles</mark> behind them.</p>
+      <p class="lede en" lang="en">The genetic mechanisms that shape plant traits, and the <mark>evolutionary principles</mark> behind them.</p>
       <p class="lede zh" lang="zh-CN">植物性状形成的遗传机制及其背后的<mark>进化原理</mark>。</p>
       <p class="en" lang="en">Chenyu Zhang is a Lecturer at the College of Forestry, Central South University of Forestry and Technology. He received his PhD in 2025, jointly trained by Huazhong Agricultural University and the Tea Research Institute of the Chinese Academy of Agricultural Sciences, with CSC-funded training in the Laboratory of Genetics at Wageningen University. His work combines genomics, quantitative genetics, plant physiology and elemental imaging, and focuses on the economic crops of the genus <i>Camellia</i>.</p>
       <p class="zh" lang="zh-CN">张晨禹现任中南林业科技大学林学院讲师。2025年获博士学位，由华中农业大学与中国农业科学院茶叶研究所联合培养，其间受国家留学基金委资助在荷兰瓦赫宁根大学遗传学实验室联合培养。他的研究结合基因组学、数量遗传学、植物生理学和元素成像技术，聚焦山茶属经济作物。</p>
@@ -214,17 +204,6 @@ html[data-lang="zh"] .name-main { font-size: 34px; }
           <h3><span class="en" lang="en">Complex hybridization history and adaptive evolution within <i>Camellia</i></span><span class="zh" lang="zh-CN">山茶属内部复杂的杂交历史和适应性进化机制</span></h3>
         </div>
       </div>
-      <div class="elements" aria-label="Elements studied">
-        <div class="el focus"><b>F</b><small>9</small></div>
-        <div class="el focus"><b>Al</b><small>13</small></div>
-        <div class="el"><b>Mg</b><small>12</small></div>
-        <div class="el"><b>P</b><small>15</small></div>
-        <div class="el"><b>S</b><small>16</small></div>
-        <div class="el"><b>Cl</b><small>17</small></div>
-        <div class="el"><b>K</b><small>19</small></div>
-        <div class="el"><b>Ca</b><small>20</small></div>
-      </div>
-      <p class="el-note"><span class="en" lang="en">One example of a distinctive trait: tea is a rare crop that accumulates both fluorine and aluminium. These are the elements in my current work.</span><span class="zh" lang="zh-CN">特色性状的一个例子：茶树是少有的能同时富集氟和铝的作物。以上是我目前研究涉及的元素。</span></p>
     </section>
 
     <section id="publications">
