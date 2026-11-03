@@ -102,7 +102,7 @@ p { margin: 0; max-width: 40em; }
 @media (max-width: 820px) { .q-text { font-size: 19px; } }
 .themes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .theme { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-.theme h3 { font-weight: 700; font-size: 20px; margin: 0 0 6px; line-height: 1.25; }
+.theme h3 { font-weight: 700; font-size: 20px; margin: 0; line-height: 1.3; text-wrap: balance; }
 .theme p { font-size: 16px; color: var(--muted); }
 .theme .tag { font-family: var(--mono); font-size: 11.5px; color: var(--accent); letter-spacing: .04em; margin-bottom: 8px; display: block; }
 
@@ -184,7 +184,7 @@ html[data-lang="zh"] .name-main { font-size: 34px; }
     <section id="about">
       <h2><span class="en" lang="en">About</span><span class="zh" lang="zh-CN">简介</span></h2>
       <p class="lede en" lang="en">Chenyu studies the genetic mechanisms that shape plant traits, and the <mark>evolutionary principles</mark> behind them.</p>
-      <p class="lede zh" lang="zh-CN">张晨禹研究植物性状形成的遗传机制及其背后的<mark>进化原理</mark>。</p>
+      <p class="lede zh" lang="zh-CN">植物性状形成的遗传机制及其背后的<mark>进化原理</mark>。</p>
       <p class="en" lang="en">Chenyu Zhang is a Lecturer at the College of Forestry, Central South University of Forestry and Technology. He received his PhD in 2025, jointly trained by Huazhong Agricultural University and the Tea Research Institute of the Chinese Academy of Agricultural Sciences, with CSC-funded training in the Laboratory of Genetics at Wageningen University. His work combines genomics, quantitative genetics, plant physiology and elemental imaging, and focuses on the economic crops of the genus <i>Camellia</i>.</p>
       <p class="zh" lang="zh-CN">张晨禹现任中南林业科技大学林学院讲师。2025年获博士学位，由华中农业大学与中国农业科学院茶叶研究所联合培养，其间受国家留学基金委资助在荷兰瓦赫宁根大学遗传学实验室联合培养。他的研究结合基因组学、数量遗传学、植物生理学和元素成像技术，聚焦山茶属经济作物。</p>
     </section>
@@ -198,24 +198,20 @@ html[data-lang="zh"] .name-main { font-size: 34px; }
       </div>
       <div class="themes">
         <div class="theme">
-          <span class="tag"><span class="en" lang="en">SNP chips · population genetics</span><span class="zh" lang="zh-CN">SNP 芯片 · 群体遗传</span></span>
-          <h3><span class="en" lang="en">Diversity of tea germplasm</span><span class="zh" lang="zh-CN">茶树种质资源多样性</span></h3>
-          <p><span class="en" lang="en">Genotyping natural tea resources from across China to describe their diversity and link candidate genes to traits.</span><span class="zh" lang="zh-CN">对全国各地的茶树自然资源进行基因分型，解析其遗传多样性，并将候选基因与性状关联。</span></p>
+          <span class="tag"><span class="en" lang="en">Genomics</span><span class="zh" lang="zh-CN">基因组学</span></span>
+          <h3><span class="en" lang="en">Comparative genomics of <i>Camellia</i></span><span class="zh" lang="zh-CN">山茶属的比较基因组学</span></h3>
         </div>
         <div class="theme">
-          <span class="tag"><span class="en" lang="en">Genomics · flowering</span><span class="zh" lang="zh-CN">基因组学 · 开花</span></span>
-          <h3><span class="en" lang="en">Flowering in oil-camellia</span><span class="zh" lang="zh-CN">油茶开花</span></h3>
-          <p><span class="en" lang="en">Genome resources, SNP chips and QTL analysis to understand flowering time and inflorescence traits in <i>Camellia</i> oil crops.</span><span class="zh" lang="zh-CN">利用基因组资源、SNP 芯片和 QTL 分析，解析山茶属油料作物的花期与花序性状。</span></p>
+          <span class="tag"><span class="en" lang="en">Population genetics</span><span class="zh" lang="zh-CN">群体遗传学</span></span>
+          <h3><span class="en" lang="en">Intraspecific genetic variation in tea and oil-camellia</span><span class="zh" lang="zh-CN">茶和油茶的种内遗传变异</span></h3>
         </div>
         <div class="theme">
-          <span class="tag"><span class="en" lang="en">QTL mapping · F1 population</span><span class="zh" lang="zh-CN">QTL 定位 · F1 群体</span></span>
-          <h3><span class="en" lang="en">Genetics of shoot quality traits</span><span class="zh" lang="zh-CN">茶树新梢品质性状遗传</span></h3>
-          <p><span class="en" lang="en">Mapping loci that control mineral elements, catechins and alkaloids in young tea shoots.</span><span class="zh" lang="zh-CN">定位控制茶树新梢矿质元素、儿茶素和生物碱含量的遗传位点。</span></p>
+          <span class="tag"><span class="en" lang="en">Trait regulation</span><span class="zh" lang="zh-CN">性状调控</span></span>
+          <h3><span class="en" lang="en">Molecular genetic mechanisms of plant biological traits</span><span class="zh" lang="zh-CN">植物生物学性状的分子遗传机制</span></h3>
         </div>
         <div class="theme">
-          <span class="tag"><span class="en" lang="en">Ionomics · root physiology</span><span class="zh" lang="zh-CN">离子组学 · 根系生理</span></span>
-          <h3><span class="en" lang="en">Fluoride and aluminium in tea roots</span><span class="zh" lang="zh-CN">茶树根系中的氟与铝</span></h3>
-          <p><span class="en" lang="en">How fluoride and aluminium interact in the root cell wall, and how oxalate and its transporters decide where fluoride ends up.</span><span class="zh" lang="zh-CN">研究氟与铝在根系细胞壁中的互作，以及草酸及其转运蛋白如何决定氟在植株中的去向。</span></p>
+          <span class="tag"><span class="en" lang="en">Wide hybridization</span><span class="zh" lang="zh-CN">远缘杂交</span></span>
+          <h3><span class="en" lang="en">Complex hybridization history and adaptive evolution within <i>Camellia</i></span><span class="zh" lang="zh-CN">山茶属内部复杂的杂交历史和适应性进化机制</span></h3>
         </div>
       </div>
       <div class="elements" aria-label="Elements studied">
